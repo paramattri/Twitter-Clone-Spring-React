@@ -1,5 +1,5 @@
 import { Avatar } from '@material-ui/core'
-import React from 'react'
+import React, {forwardRef} from 'react'
 import './Post.css'
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
@@ -7,35 +7,35 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PublishIcon from '@material-ui/icons/Publish';
 
-function Post({
+const Post = forwardRef(({
     displayName,
     username,
     verified,
     text,
     image,
     avatar
-}) {
+}, ref) => {
     return (
-        <div className="post">
+        <div className="post" ref={ref}>
             <div className="post__avatar">
-                <Avatar src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"/>
+                <Avatar src={avatar}/>
             </div>
             <div className="post__body">
                 <div className="post__header">
                     <div className="post__headerText">
                         <h3>
-                            Param Attri {" "}
+                            {displayName} {" "}
                             <span className="post__headerSpecial">
-                            <VerifiedUserIcon className="post__badge"/>
-                            @Pattri
+                            {verified && <VerifiedUserIcon className="post__badge"/>}
+                            @{username}
                             </span>
                         </h3>
                     </div>
                     <div className="post__headerDescription">
-                        <p>I am building Twitter Clone.. Let's Go!!!!</p>
+                        <p>{text}</p>
                     </div>
                 </div>
-                <img src="https://media.giphy.com/media/l0ExcNsINszxpw6E8/giphy.gif" alt=""/>
+                <img src={image} alt=""/>
                 <div className="post__footer">
                     <ChatBubbleIcon fontSize="small"/>
                     <RepeatIcon fontSize="small"/>
@@ -45,6 +45,6 @@ function Post({
             </div>
         </div>
     )
-}
+});
 
 export default Post
