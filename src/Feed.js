@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Feed.css'
 import Post from './Post'
 import TweetBox from './TweetBox'
 import FlipMove from 'react-flip-move'
+import axios from 'axios'
 
 function Feed() {
+
+    const [tweets, setTweets] = useState([])
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/twitter/tweets")
+        .then((response) => {
+            console.log(response)
+            console.log(response.data)
+            setTweets(response.data)
+        })
+    }, [])
+
     return (
         <div className="feed">
             <div className="feed__header">
@@ -13,15 +26,18 @@ function Feed() {
 
             <TweetBox/>
 
-            <FlipMove>  
-                <Post 
-                displayName="Param Attri"
-                username="Pattri"
-                verified = {true}
-                text="Twitter Clone Almost Complete"
-                image="https://media.giphy.com/media/l0ExcNsINszxpw6E8/giphy.gif"
-                avatar="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
-                />
+            <FlipMove> 
+                {tweets.map(tweet => (
+                    <Post
+                        key={tweet.tweetId}
+                        displayName={tweet.displayName}
+                        username={tweet.userName}
+                        verified={tweet.verified}
+                        text={tweet.tweetBody}
+                        image={tweet.tweetImage}
+                        avatar={tweet.avatar}
+                    />
+                ))} 
             </FlipMove>
 
         </div>
