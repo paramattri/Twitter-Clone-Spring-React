@@ -1,4 +1,5 @@
 import React from 'react'
+import './Home.css'
 import Feed from './Feed';
 import Sidebar from './Sidebar';
 import Widgets from './Widgets';

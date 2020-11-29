@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Sidebar.css'
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SidebarOption from './SidebarOption'
@@ -10,12 +10,38 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import { Button } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import CloseIcon from '@material-ui/icons/Close';
+import TweetBox from './TweetBox';
+
+const useStyles = makeStyles(theme => ({
+    dialogWrapper : {
+        position: 'absolute',
+        top: theme.spacing(5)
+    }
+}))
+
 
 function Sidebar() {
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const classes = useStyles()
+
     return (
         <div className="sidebar">
-            <TwitterIcon className="sidebar--twitterIcon"/>
+            <TwitterIcon className="sidebar__twitterIcon"/>
 
             <SidebarOption active Icon={HomeIcon} text="Home"/>
             <SidebarOption Icon={SearchIcon} text="Explore"/>
@@ -26,7 +52,18 @@ function Sidebar() {
             <SidebarOption Icon={PermIdentityIcon} text="Profile"/>
             <SidebarOption Icon={MoreHorizIcon} text="More"/>
 
-            <Button variant="outlined" className="sidebar--tweet" fullWidth>Tweet</Button>
+            <Button variant="outlined" className="sidebar__tweet" fullWidth onClick={handleClickOpen}>Tweet</Button>
+
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth="sm" fullWidth={true} classes = {{paper : classes.dialogWrapper}}>
+                <DialogTitle>
+                    <div className="dialogTitle__close">
+                        <CloseIcon onClick={handleClose}/>
+                    </div>
+                </DialogTitle>
+                <DialogContent dividers>
+                    <TweetBox setOpenPopup={setOpen}/>
+                </DialogContent>
+            </Dialog>
 
         </div>
     )
