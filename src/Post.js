@@ -2,10 +2,12 @@ import { Avatar } from '@material-ui/core'
 import React, {forwardRef} from 'react'
 import './Post.css'
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
-import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
-import RepeatIcon from '@material-ui/icons/Repeat';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import PublishIcon from '@material-ui/icons/Publish';
+// import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+// import RepeatIcon from '@material-ui/icons/Repeat';
+// import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+// import PublishIcon from '@material-ui/icons/Publish';
+import PostFooterIcons from './PostFooterIcons';
+import UserPostFooterIcons from './UserPostFooterIcons';
 
 const Post = forwardRef(({
     displayName,
@@ -13,7 +15,9 @@ const Post = forwardRef(({
     verified,
     text,
     image,
-    avatar
+    avatar,
+    isPostFooterIcon,
+    tweetId
 }, ref) => {
     return (
         <div className="post" ref={ref}>
@@ -37,10 +41,11 @@ const Post = forwardRef(({
                 </div>
                 <img src={image} alt=""/>
                 <div className="post__footer">
-                    <ChatBubbleIcon fontSize="small"/>
+                    {isPostFooterIcon ? <PostFooterIcons/> : <UserPostFooterIcons tweetId={tweetId}/>}                    
+                    {/* <ChatBubbleIcon fontSize="small"/>
                     <RepeatIcon fontSize="small"/>
                     <FavoriteBorderIcon fontSize="small"/>
-                    <PublishIcon fontSize="small"/>
+                    <PublishIcon fontSize="small"/> */}
                 </div>
             </div>
         </div>

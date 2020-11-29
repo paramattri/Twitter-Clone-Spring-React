@@ -40,12 +40,12 @@ function Sidebar() {
     };
 
     const classes = useStyles()
-
     const history = useHistory()
+    const currentUserName = localStorage.getItem('userName')
 
     return (
         <div className="sidebar">
-            <TwitterIcon className="sidebar__twitterIcon"/>
+            <TwitterIcon className="sidebar__twitterIcon" onClick={() => history.push("/twitter")}/>
 
             <SidebarOption active Icon={HomeIcon} text="Home"/>
             <SidebarOption Icon={SearchIcon} text="Explore"/>
@@ -53,7 +53,7 @@ function Sidebar() {
             <SidebarOption Icon={MailOutlineIcon} text="Messages"/>
             <SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks"/>
             <SidebarOption Icon={ListAltIcon} text="Lists"/>
-            <SidebarOption Icon={PermIdentityIcon} text="Profile"/>
+            <SidebarOption Icon={PermIdentityIcon} text="Profile" handleUserProfile={() => history.push(`/twitter/user/${currentUserName}`)}/>
             <SidebarOption Icon={MoreHorizIcon} text="More"/>
             <SidebarOption Icon={ExitToAppIcon} text="Logout" handleLogout={() => {
                 history.push("/logout")

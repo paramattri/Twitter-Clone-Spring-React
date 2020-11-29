@@ -7,6 +7,8 @@ import Home from './Home';
 import Registration from './Registration';
 import Login from './Login';
 import Logout from './Logout';
+import UserProfile from './UserProfile';
+import LandingPage from './LandingPage';
 
 function App() {
   return (
@@ -16,11 +18,12 @@ function App() {
 
         <Switch>
 
-          <Route path="/" exact component={Home}></Route>
+          <Route path="/" exact component={LandingPage}></Route>
           <Route path="/twitter" exact component={Home}></Route>
           <Route path="/twitter/register" exact component={Registration}></Route>
           <Route path="/twitter/login" exact component={Login}></Route>
           <Route path="/logout" exact component={Logout}></Route>
+          <Route path="/twitter/user/:userName" exact component={UserProfile}></Route>
 
         </Switch>
 

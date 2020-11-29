@@ -3,12 +3,19 @@ import './Widgets.css'
 import SearchIcon from '@material-ui/icons/Search';
 import { TwitterTimelineEmbed, TwitterShareButton, TwitterTweetEmbed } from "react-twitter-embed";
 
-function Widgets() {
+function Widgets(props) {
+
+    const searchHandler = (event) => {
+        let keyword = event.target.value;
+        //console.log(keyword)
+        props.parentCallback(keyword)
+    }
+
     return (
         <div className="widgets">
             <div className="widgets__input">
                 <SearchIcon className="widgets__searchIcon"/>
-                <input placeholder="Search Twitter" type="text"/>
+                <input placeholder="Search Twitter" type="search" onChange={searchHandler}/>
             </div>
 
             <div className="widgets__widgetContainer">

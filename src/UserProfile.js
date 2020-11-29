@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
-import './Home.css'
+import './UserProfile.css'
 import Feed from './Feed';
 import Sidebar from './Sidebar';
 import Widgets from './Widgets';
 import AccessDenied from './AccessDenied';
+import UserFeed from './UserFeed';
 
-function Home() {
+function UserProfile() {
 
     const [search, setSearch] = useState(null)
 
@@ -14,9 +15,10 @@ function Home() {
     }
 
     return localStorage.getItem('userName') != null ? (
-        <div className="home">
+        <div className="userProfile">
             <Sidebar/>
-            <Feed search={search}/>
+            <UserFeed search={search}/>
+            {/* <Feed search={search}/> */}
             <Widgets parentCallback={searchKeywordHandler}/>
         </div>
     ) : (
@@ -24,4 +26,4 @@ function Home() {
         )
 }
 
-export default Home
+export default UserProfile

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import './Feed.css'
+import './UserFeed.css'
 import Post from './Post'
 import TweetBox from './TweetBox'
 import FlipMove from 'react-flip-move'
 import axios from 'axios'
 import { useHistory } from "react-router";
 
-function Feed({search}) {
+function UserFeed({search}) {
 
     const [tweets, setTweets] = useState([])
     const history = useHistory()
+    const currentUserName = localStorage.getItem('userName')
 
     useEffect(() => {
-        axios.get("http://localhost:8080/twitter/tweets")
+        axios.get(`http://localhost:8080/twitter/tweets/user/${currentUserName}`)
         .then((response) => {
             console.log(response)
             console.log(response.data)
@@ -22,20 +23,21 @@ function Feed({search}) {
     }, [])
 
     return (
-        <div className="feed">
-            <div className="feed__header" onClick={() => {
-                history.push("/twitter")
+        <div className="userFeed">
+            <div className="userFeed__header" onClick={() => {
+                history.push(`/twitter/user/${currentUserName}`)
             }}>
-                <h2>Home</h2>
+                <h2>{currentUserName}</h2>
+                <p>{tweets.length} Tweets</p>
             </div>
 
-            <TweetBox/>
+            {/* <TweetBox/> */}
 
             <FlipMove>
                 {tweets.filter((tweet) => {
                     if(search == null)
                         return tweet
-                    else if(tweet.userName.toLowerCase().includes(search.toLowerCase()) || tweet.tweetBody.toLowerCase().includes(search.toLowerCase()))
+                    else if(tweet.tweetBody.toLowerCase().includes(search.toLowerCase()))
                         return tweet
                     else
                         return null
@@ -48,7 +50,8 @@ function Feed({search}) {
                         text={tweet.tweetBody}
                         image={tweet.tweetImage}
                         avatar={tweet.avatar}
-                        isPostFooterIcon={true}
+                        isPostFooterIcon={false}
+                        tweetId={tweet.tweetId}
                     /> 
                 )} 
                 {/* {tweets.map(tweet => (
@@ -68,4 +71,4 @@ function Feed({search}) {
     )
 }
 
-export default Feed
+export default UserFeed
