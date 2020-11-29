@@ -10,12 +10,14 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Button, makeStyles } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
 import TweetBox from './TweetBox';
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles(theme => ({
     dialogWrapper : {
@@ -39,6 +41,8 @@ function Sidebar() {
 
     const classes = useStyles()
 
+    const history = useHistory()
+
     return (
         <div className="sidebar">
             <TwitterIcon className="sidebar__twitterIcon"/>
@@ -51,6 +55,9 @@ function Sidebar() {
             <SidebarOption Icon={ListAltIcon} text="Lists"/>
             <SidebarOption Icon={PermIdentityIcon} text="Profile"/>
             <SidebarOption Icon={MoreHorizIcon} text="More"/>
+            <SidebarOption Icon={ExitToAppIcon} text="Logout" handleLogout={() => {
+                history.push("/logout")
+            }}/>
 
             <Button variant="outlined" className="sidebar__tweet" fullWidth onClick={handleClickOpen}>Tweet</Button>
 
