@@ -48,6 +48,7 @@ function Feed({search}) {
                         text={tweet.tweetBody}
                         image={tweet.tweetImage}
                         avatar={tweet.avatar}
+                        tweetCreationTime={tweet.tweetCreationTime}
                         isPostFooterIcon={true}
                     /> 
                 )} 

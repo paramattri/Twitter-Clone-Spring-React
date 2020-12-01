@@ -52,6 +52,7 @@ function UserFeed({search}) {
                         avatar={tweet.avatar}
                         isPostFooterIcon={false}
                         tweetId={tweet.tweetId}
+                        tweetCreationTime={tweet.tweetCreationTime}
                     /> 
                 )} 
                 {/* {tweets.map(tweet => (

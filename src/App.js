@@ -10,10 +10,10 @@ import Logout from './Logout';
 import UserProfile from './UserProfile';
 import LandingPage from './LandingPage';
 
+
 function App() {
   return (
     <div className="app">
-
       <Router>
 
         <Switch>

@@ -8,6 +8,8 @@ import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 // import PublishIcon from '@material-ui/icons/Publish';
 import PostFooterIcons from './PostFooterIcons';
 import UserPostFooterIcons from './UserPostFooterIcons';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 const Post = forwardRef(({
     displayName,
@@ -17,6 +19,7 @@ const Post = forwardRef(({
     image,
     avatar,
     isPostFooterIcon,
+    tweetCreationTime,
     tweetId
 }, ref) => {
     return (
@@ -31,7 +34,7 @@ const Post = forwardRef(({
                             {displayName} {" "}
                             <span className="post__headerSpecial">
                             {verified && <VerifiedUserIcon className="post__badge"/>}
-                            @{username}
+                            @{username} . {<Moment tz="Asia/Calcutta" fromNow>{tweetCreationTime}</Moment>}
                             </span>
                         </h3>
                     </div>
