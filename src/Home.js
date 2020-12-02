@@ -20,7 +20,9 @@ function Home() {
             <Widgets parentCallback={searchKeywordHandler}/>
         </div>
     ) : (
-            <AccessDenied/>
+            <div className="home">
+                <AccessDenied/>
+            </div>
         )
 }
 

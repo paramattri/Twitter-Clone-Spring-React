@@ -22,7 +22,10 @@ function UserProfile() {
             <Widgets parentCallback={searchKeywordHandler}/>
         </div>
     ) : (
-            <AccessDenied/>
+            <div className="userProfile">
+                <AccessDenied/>
+            </div>
+            
         )
 }
 
