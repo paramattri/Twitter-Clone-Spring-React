@@ -3,19 +3,15 @@ import { Button, Container, CssBaseline, Divider, Typography } from '@material-u
 
 function AccessDenied() {
     return (
-        <div className="accessDenied">
-            <CssBaseline/>
-            <Container fixed>
-                <Typography component="div" style={{ backgroundColor : '#E9ECEF', height: '30vh', borderRadius: '20px'}}>
-                    <Typography variant="h3" gutterBottom style={{ padding: '15px'}}>
-                        Login to see Amazing tweets!!
-                    </Typography>
-                    <Divider/>
-                    <Button variant="outlined" color="primary" href="/twitter/login" style={{marginTop: '30px', marginLeft: '10px'}}>
-                        Log In to Existing Account
-                    </Button>
-                </Typography>
-            </Container>
+        <div className="accessDenied" style={{backgroundColor: ' rgb(21, 32, 43)', height: '100vh'}}>
+            <br></br>
+            <br></br>
+            <div className="errorImage" style={{marginLeft: '35%'}}>
+                <img src="https://media.giphy.com/media/kF0ngyP7S1DfmzKqiN/giphy.gif" alt="Login to see Amazing tweets!"/>
+            </div>
+            <Button variant="outlined" color="primary" href="/twitter/login" style={{marginTop: '30px', marginLeft: '42%'}}>
+                Log In to Existing Account
+            </Button>     
         </div>
     )
 }
